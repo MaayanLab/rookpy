@@ -16,9 +16,9 @@ RUN pip3 install flask-cors
 RUN pip3 install Flask-Session
 RUN pip3 install requests
 RUN pip3 install python-dateutil --upgrade
-RUN pip3 install h5py
 RUN pip3 install pandas
-RUN pip3 install numpy
+RUN pip3 install numpy==1.20.0
+RUN pip3 install qnorm
 
 WORKDIR /usr/local/src
 
