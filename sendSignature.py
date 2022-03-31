@@ -1,45 +1,25 @@
 
-import subprocess
 
-import MySQLdb
-import datetime, time
-import numpy as np
-import pandas as pd
-import subprocess
-import shlex
-import os
-import sys
-import hashlib
 import requests
 import json
-import re
-import geode
-
-from joblib import Parallel, delayed
-import multiprocessing
-
-import smtplib
-from email.mime.text import MIMEText
-
-import pickle
-from collections import defaultdict
-import zipfile
-import zlib
-import gzip
 
 
+payload = {}
+payload["direction"] = "similar"
+payload["signatureName"] = "Example_similar"
+payload["species"] = "human"
+payload["type"] = "geneset"
+payload["upgenes"] =  ["AARS", "ACLY", "KIAA0907", "KDM5A", "CDC25A", "EGR1", "GADD45B", "RELB", "TERF2IP", "SMNDC1"]
+payload["downgenes"] =  ["ACTN1", "ACTG1", "SCCPDH", "KIF20A", "FZD7", "USP22", "PIP4K2B", "CRYZ", "GNB5", "EIF4EBP1", "PHGDH"]
 
-vector_json = {}
-vector_json["signatureName"] = "hai"
-#vector_json["filter"] = "N_row_sum"
 
-vector_json["genes"] = ["KRT17","SLC7A5","FBN1","TGFBI","SPTAN1","HSPG2","SLC3A2", "COL12A1", "TKT", "ACTN4"]
+upload_url = 'https://maayanlab.edu/rookpy/signature'
 
-upload_url = 'http://amp.pharm.mssm.edu/custom/rooky'
+upload_url = "http://localhost:5055/rookpy/signatures"
 
-print(json.dumps(vector_json))
+print(json.dumps(payload))
 
-r = requests.post(upload_url, json.dumps(vector_json))
+r = requests.post(upload_url, json.dumps(payload))
 
 print(r.text)
 

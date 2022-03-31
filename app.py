@@ -23,12 +23,14 @@ base_name = os.environ.get('BASE_NAME', 'rookpy')
 data_url = os.environ.get('DATA_URL', 'https://mssm-seq-matrix.s3.amazonaws.com/rooky_data.pkl')
 token = os.environ.get('TOKEN', 'NA')
 
-urllib.request.urlretrieve(data_url, 'data.pkl')
+#urllib.request.urlretrieve(data_url, 'data.pkl')
 print("data loaded")
 
 data = 0
 with open('data.pkl', 'rb') as f:
     data = pickle.load(f)
+
+print('/'+base_name+'/signature')
 
 @app.route('/'+base_name+'/signature', methods=["POST", "GET"])
 def signature_search():
@@ -96,4 +98,4 @@ def signature_search():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5055)
